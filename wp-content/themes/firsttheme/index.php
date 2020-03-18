@@ -15,7 +15,13 @@
   <?php } ?>
   <?php the_posts_pagination(); ?>
 <?php } else { ?>
-  <p>Sorry, no posts matched your criteria.</p>
+  <p><?php _e('Sorry, no posts matched your criteria.',  'firsttheme'); ?></p>
 <?php } ?>
+
+<?php 
+
+
+?>
+
 
 <?php get_footer(); ?>

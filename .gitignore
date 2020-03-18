@@ -1,8 +1,9 @@
 wp-config.php
 wp-admin/
 wp-includes/
-node-modules/
+node_modules/
 wp-content/plugins/
 wp-content/updates/
 wp-content/index.php
 wp-content/plugins/
+wp-content/themes/firsttheme/node_modules/
