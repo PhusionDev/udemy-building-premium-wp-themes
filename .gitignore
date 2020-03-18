@@ -1,0 +1,8 @@
+wp-config.php
+wp-admin/
+wp-includes/
+node-modules/
+wp-content/plugins/
+wp-content/updates/
+wp-content/index.php
+wp-content/plugins/
