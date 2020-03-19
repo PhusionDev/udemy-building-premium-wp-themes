@@ -19,6 +19,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-if": "^3.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
     "yargs": "^15.3.1"
   }
 }
