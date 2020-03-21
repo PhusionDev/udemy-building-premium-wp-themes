@@ -6,16 +6,16 @@
       <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
     </h2>
     <div>
-      <?php firsttheme_post_meta(); ?>
+      <?php _themename_post_meta(); ?>
     </div>
     <div>
       <?php the_excerpt(); ?>
     </div>
-    <?php firsttheme_readmore_link(); ?>
+    <?php _themename_readmore_link(); ?>
   <?php } ?>
   <?php the_posts_pagination(); ?>
 <?php } else { ?>
-  <p><?php _e('Sorry, no posts matched your criteria.',  'firsttheme'); ?></p>
+  <p><?php _e('Sorry, no posts matched your criteria.',  '_themename'); ?></p>
 <?php } ?>
 
 <?php 
