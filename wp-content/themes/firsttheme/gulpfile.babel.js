@@ -21,6 +21,8 @@ import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
 import del from 'del';
+import webpack from 'webpack-stream';
+import uglify from 'gulp-uglify';
 
 const PRODUCTION = yargs.argv.prod;
 const paths = {
@@ -31,6 +33,10 @@ const paths = {
   images: {
     src: 'src/assets/images/**/*.{jpg,jpeg,png,bmp,svg,gif}',
     dest: 'dist/assets/images'
+  },
+  scripts: {
+    src: 'src/assets/js/bundle.js',
+    dest: 'dist/assets/js'
   },
   other: {
     src: ['src/assets/**/*', '!src/assets/{images,js,scss}/**/*'],
@@ -64,6 +70,32 @@ export const watch = () => {
   gulp.watch('src/assets/scss/**/*.scss', styles);
   gulp.watch(paths.images.src, images);
   gulp.watch(paths.other.src, copy);
+}
+
+export const scripts = () => {
+  return gulp.src(paths.scripts.src)
+    .pipe(webpack({
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }
+          }
+        ]
+      },
+      mode: PRODUCTION ? 'production' : 'development',
+      output: {
+        filename: 'bundle.js'
+      },
+      devtool: !PRODUCTION ? 'inline-source-map' : false
+    }))
+    .pipe(gulpif(PRODUCTION, uglify()))
+    .pipe(gulp.dest(paths.scripts.dest));
 }
 
 export const dev = gulp.series(clean, gulp.parallel(styles, images, copy), watch);
