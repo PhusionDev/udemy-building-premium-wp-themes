@@ -23,6 +23,7 @@ import imagemin from 'gulp-imagemin';
 import del from 'del';
 import webpack from 'webpack-stream';
 import uglify from 'gulp-uglify';
+import named from 'vinyl-named';
 
 const PRODUCTION = yargs.argv.prod;
 const paths = {
@@ -35,7 +36,7 @@ const paths = {
     dest: 'dist/assets/images'
   },
   scripts: {
-    src: 'src/assets/js/bundle.js',
+    src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js'],
     dest: 'dist/assets/js'
   },
   other: {
@@ -68,12 +69,14 @@ export const copy = () => {
 
 export const watch = () => {
   gulp.watch('src/assets/scss/**/*.scss', styles);
+  gulp.watch('src/assets/js/**/*.js', scripts);
   gulp.watch(paths.images.src, images);
   gulp.watch(paths.other.src, copy);
 }
 
 export const scripts = () => {
   return gulp.src(paths.scripts.src)
+    .pipe(named())
     .pipe(webpack({
       module: {
         rules: [
@@ -90,7 +93,7 @@ export const scripts = () => {
       },
       mode: PRODUCTION ? 'production' : 'development',
       output: {
-        filename: 'bundle.js'
+        filename: '[name].js'
       },
       devtool: !PRODUCTION ? 'inline-source-map' : false
     }))
@@ -98,7 +101,7 @@ export const scripts = () => {
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
-export const dev = gulp.series(clean, gulp.parallel(styles, images, copy), watch);
-export const build = gulp.series(clean, gulp.parallel(styles, images, copy));
+export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), watch);
+export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy));
 
 export default dev;
