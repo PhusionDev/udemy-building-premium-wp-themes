@@ -45,12 +45,31 @@ const paths = {
     dest: 'dist/assets/js'
   },
   other: {
-    src: ['src/**/*','!src/assets/{images,js,scss}','!src/assets/{images,js,scss}/**/*'],
-    dest: 'dist/assets'
+    src: [
+      "src/assets/**/*",
+      "!src/assets/{images,js,scss}",
+      "!src/assets/{images,js,scss}/**/*"
+    ],
+    dest: "dist/assets"
   },
   package: {
-    src: ['**/*', '!.vscode', '!node_modules{,/**}', '!packaged{,/**}', '!src{,/**}', '!.babelrc', '!.git{,ignore}', '!gulpfile.babel.js', '!package.json', '!package-lock.json'],
-    dest: 'packaged'
+    src: [
+      "**/*",
+      "!.vscode",
+      "!node_modules{,/**}",
+      "!packaged{,/**}",
+      "!src{,/**}",
+      "!.babelrc",
+      "!.gitignore",
+      "!gulpfile.babel.js",
+      "!package.json",
+      "!package-lock.json",
+      "!archive-_themename_portfolio.php",
+      "!single-_themename_portfolio.php",
+      "!taxonomy-_themename_skills.php",
+      "!taxonomy-_themename_project_type.php"
+    ],
+    dest: "packaged"
   }
 }
 
