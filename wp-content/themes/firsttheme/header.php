@@ -16,6 +16,14 @@
         <?php get_search_form( true ); ?>
       </div>
     </div>
+
+    <div class="c-navigation">
+      <div class="o-container">
+        <nav class="header-nav" role="navigation" aria-label="<?php esc_html_e( 'Maine Navigation', '_themename' ); ?>">
+          <?php wp_nav_menu( array('theme-location' => 'main-menu')); ?>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <div id="header"></div>
