@@ -1,6 +1,8 @@
 <?php 
 
 function _themename_customize_register( $wp_customize ) {
+  $wp_customize->get_setting('blogname')->transport = 'postMessage';
+  
   $wp_customize->add_section('_themename_footer_options', array(
     'title' => esc_html__( 'Footer Options', '_themename' ),
     'description' => esc_html__( 'You can change footer options from here.', '_themename' )
@@ -8,7 +10,8 @@ function _themename_customize_register( $wp_customize ) {
 
   $wp_customize->add_setting('_themename_site_info', array(
     'default' => '',
-    'sanitize_callback' => '_themename_sanitize_site_info'
+    'sanitize_callback' => '_themename_sanitize_site_info',
+    'transport' => 'postMessage'
   ));
 
   $wp_customize->add_control('_themename_site_info', array(
