@@ -6,7 +6,7 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-
+  <a href="#content" class="u-skip-link"><?php esc_attr_e( 'Skip to content', '_themename' ); ?></a>
   <header role="banner" class="u-margin-bottom-40">
     <div class="c-header">
       <div class="o-container u-flex u-align-justify u-align-middle">
@@ -26,4 +26,5 @@
     </div>
   </header>
 
-  <div id="header"></div>
+  <!-- this div will end in footer.php -->
+  <div id="content">
