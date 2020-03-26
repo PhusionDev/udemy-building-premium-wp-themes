@@ -7,10 +7,6 @@
         background-color: transparent;
         color: inherit;
         margin-left: rem-calc(10px);
-
-        &:focus {
-          border: 1px solid #20ddae;
-        }
     }
     > .menu-item {
         margin: 0;
