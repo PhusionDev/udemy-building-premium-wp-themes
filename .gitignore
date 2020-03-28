@@ -1,9 +1,36 @@
-wp-config.php
-wp-admin/
-wp-includes/
-node_modules/
-wp-content/plugins/
-wp-content/updates/
-wp-content/index.php
-wp-content/plugins/
+# Ignore everything in the root except the "wp-content" directory.
+/*
+!.gitignore
+!wp-content/
+
+# Ignore everything in the "wp-content" directory, except the "plugins"
+# and "themes" directories.
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
+
+# Ignore everything in the "plugins" directory, except the plugins you
+# specify (see the commented-out examples for hints on how to do this.)
+wp-content/plugins/*
+# !wp-content/plugins/my-single-file-plugin.php
+!wp-content/plugins/_themename-metaboxes/
+wp-content/plugins/_themename-metaboxes/node_modules/
+
+# Ignore everything in the "themes" directory, except the themes you
+# specify (see the commented-out example for a hint on how to do this.)
+wp-content/themes/*
+!wp-content/themes/firsttheme/
 wp-content/themes/firsttheme/node_modules/
+
+# .vscode/
+# wp-config.php
+# wp-admin/
+# wp-includes/
+# node_modules/
+# wp-content/*
+# !wp-content/plugins/
+# !wp-content/themes/
+# wp-content/plugins/*
+# !wp-content/plugins/_themename-metaboxes/
+# wp-content/plugins/_themename-metaboxes/node_modules/
+# wp-content/themes/firsttheme/node_modules/
