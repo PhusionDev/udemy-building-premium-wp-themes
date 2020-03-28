@@ -13,7 +13,6 @@ import zip from 'gulp-zip';
 import replace from 'gulp-replace';
 import info from './package.json';
 
-const server = browserSync.create();
 const PRODUCTION = yargs.argv.prod;
 const paths = {
   styles: {
@@ -55,11 +54,6 @@ const paths = {
     ],
     dest: "packaged"
   }
-}
-
-export const reload = (done) => {
-  server.reload();
-  done();
 }
 
 export const clean = () => del(['dist']);
