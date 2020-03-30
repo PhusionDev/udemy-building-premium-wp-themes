@@ -14,7 +14,11 @@
         <?php while (have_posts()) {?>
           <?php the_post(); ?>
           <?php get_template_part( 'template-parts/post/content' ); ?>
-          <?php get_template_part( 'template-parts/single/author' ); ?>
+          <?php
+            if(get_theme_mod( '_themename_display_author_info', true )) {
+              get_template_part( 'template-parts/single/author' );
+            }
+          ?>
 
         <?php } ?>
       <?php } else { ?>
