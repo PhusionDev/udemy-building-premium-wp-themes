@@ -55,7 +55,6 @@
       ?>
     </footer>
     <?php } ?>
-
     <?php if(!is_single()) { _themename_readmore_link(); } ?>
   </div>
 </article>
