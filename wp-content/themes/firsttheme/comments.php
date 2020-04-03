@@ -28,7 +28,8 @@ if ( post_password_required() ) {
       <?php
         wp_list_comments( array(
           'avatar_size' => 200,
-          'reply_text' => 'Reply!'
+          'reply_text' => 'Reply!',
+          'callback' => '_themename_comment_callback'
         ));
       ?>
     </ul>
