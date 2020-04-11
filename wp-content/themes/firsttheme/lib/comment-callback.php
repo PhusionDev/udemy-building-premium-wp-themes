@@ -1,10 +1,11 @@
 <?php
 
 function _themename_comment_callback( $comment, $args, $depth ) {
+  $tag = ( $args['style'] === 'div' ) ? 'div' : 'li';
   ?>
-  <li id="comment-<?php comment_ID(); ?>" <?php comment_class( ['c-comment', $comment->comment_parent ? 'c-comment--child' : '' ]); ?>>
+  <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( ['c-comment', $comment->comment_parent ? 'c-comment--child' : '' ]); ?>>
     <article id="div-comment-<?php comment_ID(); ?>" class="c-comment__body">
-      <?php echo get_avatar( $comment, 100, false, false, array('class' => 'c-comment__avatar' ) ); ?>
+      <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'], false, false, array('class' => 'c-comment__avatar' ) ); ?>
 
       <?php edit_comment_link( esc_html__( 'Edit Comment', '_themename' ), '<span class="c-comment__edit-link">', '</span>' ); ?>
 
@@ -25,15 +26,18 @@ function _themename_comment_callback( $comment, $args, $depth ) {
           <p class="c-comment__awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', '_themename' ); ?></p>
         <?php } ?>
 
-        <?php comment_text(); ?>
+        <?php
+        if($comment->comment_type == '' || (($comment->comment_type == 'pingback' || $comment->comment_type == 'trackback') && !$args['short_ping'])) {
+          comment_text();
+        }
+        ?>
 
-        <?php comment_reply_link( array(
+        <?php comment_reply_link( array_merge($args, array(
           'depth' => $depth,
-          'max_depth' => $args['max_depth'],
           'add_below' => 'div-comment',
           'before' => '<div class="c-comment__reply-link">',
           'after' => '</div>'
-        )); ?>
+        ))); ?>
 
       </div>
     </article>

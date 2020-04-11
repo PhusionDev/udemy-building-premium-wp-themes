@@ -24,15 +24,17 @@ if ( post_password_required() ) {
       ?>
     </h2>
 
-    <ul class="c-comments__list">
+    <div class="c-comments__list">
       <?php
         wp_list_comments( array(
-          'avatar_size' => 200,
+          'short_ping' => true,
+          'style' => 'div',
+          'avatar_size' => 100,
           'reply_text' => 'Reply!',
           'callback' => '_themename_comment_callback'
         ));
       ?>
-    </ul>
+    </div>
     <?php the_comments_pagination(); ?>
      
   <?php } ?>
